@@ -6,7 +6,7 @@
 
 ![Kt47mn.png](https://s2.ax1x.com/2019/10/23/Kt47mn.png)
 
-将解压的build和web两个文件夹放入/dist/static/pdf中，同时也放一份到/src/static/pdf中作为备份。
+将解压的 build 和 web 两个文件夹放入/static/pdf 中。
 
 
 
@@ -65,7 +65,45 @@ value: ''
 
 (1)打开viewer.html，在<script src="viewer.js"></script>之前增加以下代码：
 
-// data.js是放在本地的base64数据，实际开发从后端获取
+```js
+// data.js是在本地存储的base64数据，实际开发从后端获取
+<script src="../data.js"></script>
+<script>
+  // 去除DataURI中的换行和空格
+  function filterData(data) {
+    //[RFC2045]中有规定：base64一行不能超过76字符，超过则添加回车换行符。因此需要把base64字段中的换行符，回车符给去掉。
+    // 如果后端返回的base64数据带有MIME类型，需要从MIME类型之后开始清除换行和回车符。
+    // 如果不带MIME类型，直接去除回车和换行，然后使用atob解码(不需要手动加上MIME类型头)。
+    const maker = ';base64,';
+    let dataURI = '';
+    if (data.indexOf(maker) > -1) {
+      const base64Index = data.indexOf(maker) + maker.length;
+      dataURI = data.substring(base64Index).replace(/[\r\n]/g, '');
+    } else {
+      dataURI = data.replace(/[\r\n]/g, '');
+    }
+    return dataURI;
+  }
+  //将dataURI转换成pdf.js能够直接解析的Uint8Array类型
+  function convertDataURIToBinary(dataURI) {
+    // 将base64解码
+    const raw = window.atob(dataURI);
+    const rawLength = raw.length;
+    // 创建储存二进制数据的内存
+    const buffer = new ArrayBuffer(rawLength);
+    // 在buffer内存中创建8位不带符号整数的TypedArray视图
+    const typedArray = new Uint8Array(buffer);
+    for (let i = 0; i < rawLength; i++) {
+      typedArray[i] = raw.charCodeAt(i) & 0xff;
+    }
+    return typedArray;
+  }
+  const DEFAULT_URL = convertDataURIToBinary(filterData(data));
+</script>
+```
+
+
+
 <script src="../data.js"></script>
 <script>
   // 去除DataURI中的换行和空格

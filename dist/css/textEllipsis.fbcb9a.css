@@ -1,0 +1,20 @@
+.text-ellipsis .text-ellipsis__multiple[data-v-271a2a0a] {
+  word-break: break-all;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -moz-box;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+}
+.text-ellipsis .text-ellipsis__single[data-v-271a2a0a] {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-ellipsis__tooltip {
+  max-width: 250px;
+}
+

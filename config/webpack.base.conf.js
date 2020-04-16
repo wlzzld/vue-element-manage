@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const resolve = (dir) => {
   return path.resolve(process.cwd(), dir)
@@ -22,6 +23,10 @@ module.exports = {
       }
     }),
     new VueLoaderPlugin(),
+    new CopyWebpackPlugin([{
+      from: resolve('static'),
+      to: 'static'
+    }])
   ],
   module: {
     rules: [{
