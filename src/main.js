@@ -6,14 +6,18 @@ import ElementUI from 'element-ui';
 import App from '@/App';
 import router from '@/router';
 import store from '@/store';
+import filters from '@/filters';
+
+
 import '@/assets/styles/app.scss';
 
 // mock数据
 import './mock';
 
-// 全局注册的组件和指令
+// 全局注册的组件、指令、过滤器
 import '@/components';
 import '@/directive';
+import '@/filters';
 
 import reminder from '@/components/Reminder/index.js'
 
@@ -29,6 +33,7 @@ Object.defineProperty(Vue.prototype, '$dayjs', {
 Object.defineProperty(Vue.prototype, '$reminder', {
   value: reminder
 })
+
 
 
 

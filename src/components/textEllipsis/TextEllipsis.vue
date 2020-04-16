@@ -1,12 +1,25 @@
 <template>
-  <div class="text-ellipsis" :class="classname">
+  <div class="text-ellipsis">
+
+    <!-- <el-tooltip
+      popper-class="text-ellipsis__tooltip"
+      :content="text"
+      effect="light"
+      :disabled="tooltipDisabled"> -->
+
     <div v-if="limit > 0">
-      {{ellipsisText(text, limit)}}
+      {{content}}
     </div>
 
-    <div v-else :class="ellipsisClass" :style="ellipsis">
+    <div
+      :class="ellipsisClass"
+      :style="ellipsisStyle"
+      ref="lineLimit"
+      v-else>
       {{text}}
     </div>
+    <!-- </el-tooltip> -->
+
   </div>
 
 </template>
@@ -14,47 +27,56 @@
 <script>
   export default {
     props: {
+      // 文本内容
       text: {
         type: String,
         default: ''
       },
+      // 文字个数限制
       limit: {
         type: Number,
         default: 0
       },
+      // 内容宽度限制
       width: {
         type: Number,
         default: 0
       },
+      // 内容行数限制
       lineClamp: {
         type: Number,
         default: 0
       },
-      classname: {
-        type: String,
-        default: ''
+      // 是否显示tooltip
+      showTooltip: {
+        type: Boolean,
+        default: true
       }
     },
     computed: {
-      ellipsisClass() {
-        return this.lineClamp > 0 ? 'text-ellipsis__multiple' : 'text-ellipsis__single';
-      },
-      ellipsis() {
-        return {
-          width: this.width > 0 ? this.width + 'px' : '100%',
-          '-webkit-line-clamp': this.lineClamp
-        }
-      }
-    },
-    methods: {
-      ellipsisText(text, limit) {
+      content() {
+        const { text, limit } = this;
         if (text.length <= limit) {
           return text;
         } else {
           return text.slice(0, limit) + '...';
         }
+      },
+      ellipsisClass() {
+        return this.lineClamp > 0 ? 'text-ellipsis__multiple' : 'text-ellipsis__single';
+      },
+      ellipsisStyle() {
+        return {
+          width: this.width > 0 ? this.width + 'px' : '100%',
+          '-webkit-line-clamp': this.lineClamp
+        }
+      },
+      tooltipDisabled() {
+        const textLengthOver = text.length > limit;
+
+        return textLengthOver
       }
-    },
+    }
   }
 </script>
 
@@ -79,5 +101,12 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
+
+
+  }
+</style>
+<style>
+  .text-ellipsis__tooltip {
+    max-width: 250px;
   }
 </style>

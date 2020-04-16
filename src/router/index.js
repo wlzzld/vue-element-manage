@@ -2,6 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import store from '@/store';
 import config from '@/config';
+import { deepClone } from "@/utils/core";
 
 Vue.use(VueRouter);
 
@@ -13,7 +14,6 @@ import dashboardRoute from './modules/dashboard';
 import errorRoute from './modules/error';
 import formRoute from './modules/form';
 import mineRoute from './modules/mine';
-import officeRoute from './modules/office';
 import otherRoute from './modules/other';
 import pdfRoute from './modules/pdf';
 import permissionRoute from './modules/permission';
@@ -37,6 +37,8 @@ const staticRouteMap = [{
   reloadRoute,
   blankRoute,
 ]
+
+
 // 需要通过角色动态控制的路由表
 const dynamicRouteMap = [
   chartRoute,
@@ -48,7 +50,6 @@ const dynamicRouteMap = [
   userRoute,
   articleRoute,
   pdfRoute,
-  officeRoute,
   otherRoute,
   {
     name: '404',
@@ -78,7 +79,7 @@ const createRouter = () => new VueRouter({
 // 退出登录的时候执行，防止重复注册路由
 const resetRouter = () => {
   const newRouter = createRouter();
-  router.matcher = newRouter.matcher
+  router.matcher = newRouter.matcher;
 }
 
 const router = createRouter();
@@ -95,23 +96,26 @@ const getRouteNames = (roles) => {
 //根据路由名称获取可访问的路由表
 const filterRouteMap = (routeNames, routeMap) => {
   const acceptedRouteMap = [];
-  routeMap.forEach(route => {
+  const routes = deepClone(routeMap);
+  routes.forEach(route => {
     // 如果一级路由的名称存在路由权限表中，则它之下的所有子路由都可访问
     if (routeNames.includes(route.name)) {
-      acceptedRouteMap.push(route)
+      acceptedRouteMap.push(route);
     } else {
       // 如果一级路由的名称不在路由权限表中，再看它的哪些子路由名称在路由权限表中
       if (route.children) {
         route.children = filterRouteMap(routeNames, route.children);
         // 如果有子路由可访问，再添加。
         if (route.children.length > 0) {
-          acceptedRouteMap.push(route)
+          acceptedRouteMap.push(route);
         }
       }
     }
-  })
+  });
   return acceptedRouteMap;
-}
+};
+
+
 
 
 // 导航守卫

@@ -48,7 +48,6 @@
   - 创建文章
   - 文章列表
 - pdf
-- office-online
 - 上传
   - 头像上传
   - 文件上传
@@ -56,14 +55,12 @@
   - 403
   - 404
 - 其他功能
-  - 返回顶部
+  - 导入/导出 excel
   - 滚动条
   - 打印
   - html2canvas
   - 拖拽 Dialog
-  - SVG 图标
   - 地图
-  - 导入/导出 excel
   - 快捷复制
   - 文本溢出
 
@@ -81,6 +78,7 @@
 |		|-- fonts                   字体
 |	|-- components            全局公共组件
 |	|-- directive             全局公共指令
+|	|-- filters               过滤器
 |	|-- layouts               基础布局
 |	|-- mock                  数据模拟
 |	|-- pages                 页面级组件

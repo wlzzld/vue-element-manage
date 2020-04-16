@@ -55,6 +55,7 @@
   import Scrollbar from '@/components/scrollbar';
 
   export default {
+    name: 'ScrollbarDemo',
     components: {
       Scrollbar
     },

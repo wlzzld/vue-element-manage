@@ -1,6 +1,6 @@
 const InnerLayout = () => import( /* webpackChunkName:'innerLayout' */ '@/layouts/innerLayout');
-const ArticleList = () => import( /* webpackChunkName:'articleList' */ '@/pages/article/articleList');
-const ArticleEdit = () => import( /* webpackChunkName:'articleEdit' */ '@/pages/article/articleEdit');
+const ArticleList = () => import( /* webpackChunkName:'articleList' */ '@/pages/article/list');
+const ArticleEdit = () => import( /* webpackChunkName:'articleEdit' */ '@/pages/article/edit');
 
 
 const route = {

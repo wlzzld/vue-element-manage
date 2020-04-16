@@ -1,74 +1,90 @@
-// 策略对象，封装校验逻辑
+// 策略对象，封装校验规则
 const strategies = {
-  empty(value, errorMsg) {
-    if (value == "") {
-      return errorMsg;
-    }
+  mobile(value) {
+    return /(^1[345789]\d{9}$)/.test(value);
   },
-  minLength(value, length, errorMsg) {
-    if (value.length < length) {
-      return errorMsg;
-    }
+  email(value) {
+    return /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(value);
   },
-  maxLength(value, length, errorMsg) {
-    if (value.length > length) {
-      return errorMsg;
-    }
+  IDCard(value) {
+    return /^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/.test(value);
   },
-  mobile(value, errorMsg) {
-    if (!/(^1[345789]\d{9}$)/.test(value)) {
-      return errorMsg;
-    }
+  min(value, limit) {
+    return value.length >= limit;
   },
-  email(value, errorMsg) {
-    if (!/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(value)) {
-      return errorMsg;
-    }
+  max(value, limit) {
+    return value.length <= limit;
+  },
+  required(value, limit) {
+    if (!limit) {
+      return true;
+    };
+    return value ? true : false;
+  },
+  pattern(value, limit) {
+    return limit.test(value);
   }
 }
 
-// Validator类负责接收用户输入，并委托给strategies对象
-class Validator {
 
-  constructor() {
-    this.cache = [] // 保存校验规则
-  }
 
-  /**
-   * 添加检验信息
-   * @param value{String}  要校验的值
-   *
-   * @param rules{Array}要校验的规则。每条规则是一个对象，对象包含两个属性strategy和errorMsg。
-   * strategy的值如：
-   * 'minLength:6'是一个以冒号隔开的字符串。冒号前面的 minLength 代表挑选的 strategy对象，冒号后面的数字6表示在校验过程中所必需的一些参数。
-   * 'minLength:6'的意思就是校验value的最小长度为 6。
-   * 如果这个字符串中不包含冒号，说明校验过程中不需要额外的参数信息，比如'empty'。
-   * errorMsg为当校验未通过时返回的错误信息。
-   *
-   */
-  add(value, rules, errorMsg) {
-    rules.forEach(rule => {
-      let info = rule.strategy.split(":");
-      this.cache.push(function () {
-        let strategy = info.shift(); //获取要校验的strategy名
-        info.unshift(value); //要检验的值
-        info.push(rule.errorMsg); //错误信息
-        return strategies[strategy](...info);
-      })
+
+// 存储校验器对象
+let validators = [];
+
+
+/**
+ * 添加校验器
+ * @param value{any}   要校验的值
+ * @param rules{Array} 校验的规则。
+ *
+ */
+function addValidator(value, rules) {
+  rules.forEach(rule => {
+    if (!rule.message) {
+      throw new Error('缺少提示信息');
+    }
+
+    const message = rule.message;
+    delete rule.message;
+    let strategy = Object.keys(rule)[0];
+    if (!strategy) {
+      throw new Error('缺少校验类型');
+    }
+
+    if (strategy === 'type') {
+      strategy = rule.type;
+    }
+
+    if (!Object.keys(strategies).includes(strategy)) {
+      throw new Error(`校验器无法校验${strategy}类型`);
+    }
+
+    validators.push({
+      strategy,
+      value,
+      message,
+      limit: rule[strategy]
     })
-  }
-
-  // 迭代cache数组，调用数组中的每个函数进行校验
-  start() {
-    const msg = '';
-    this.cache.some(item => {
-      msg = item();
-      if (msg) {
-        return true;
-      }
-    })
-    return msg;
-  }
+  })
 }
 
-export default Validator;
+
+function validate(data, rules) {
+  for (const [key, value] of Object.entries(rules)) {
+    addValidator(data[key], value);
+  }
+  let errorMsg = '';
+  validators.some(validator => {
+    const { strategy, value, message, limit } = validator;
+    const result = strategies[strategy](value, limit);
+    if (!result) {
+      errorMsg = message;
+      return true;
+    }
+  })
+  validators = [];
+  return errorMsg;
+}
+
+export default validate;

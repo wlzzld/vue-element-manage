@@ -4,10 +4,10 @@ const Excel = () => import( /* webpackChunkName:'excel' */ '@/pages/other/excel'
 const HtmlToCanvas = () => import( /* webpackChunkName:'htmlToCanvas' */ '@/pages/other/htmlToCanvas');
 const AMap = () => import( /* webpackChunkName:'aMap' */ '@/pages/other/aMap');
 const DragDialog = () => import( /* webpackChunkName:'dragDialog' */ '@/pages/other/dragDialog');
-const Carousel = () => import( /* webpackChunkName:'carousel' */ '@/pages/other/carousel');
-const ComponentDemo = () => import( /* webpackChunkName:'componentDemo' */ '@/pages/other/componentDemo');
 const Copy = () => import( /* webpackChunkName:'copy' */ '@/pages/other/copy');
 const FileToBase64 = () => import( /* webpackChunkName:'fileToBase64' */ '@/pages/other/fileToBase64');
+const TextEllipsis = () => import( /* webpackChunkName:'textEllipsis' */ '@/pages/other/textEllipsis');
+const Scrollbar = () => import( /* webpackChunkName:'scrollbar' */ '@/pages/other/scrollbar');
 
 const route = {
   name: 'Other',
@@ -45,22 +45,6 @@ const route = {
     meta: {
       title: '拖拽Dialog',
     }
-  },
-  //  {
-  //   name: 'Carousel',
-  //   path: '/other/carousel',
-  //   component: Carousel,
-  //   meta: {
-  //     title: '轮播图',
-  //   }
-  // },
-   {
-    name: 'ComponentDemo',
-    path: '/other/componentDemo',
-    component: ComponentDemo,
-    meta: {
-      title: '小组件',
-    }
   }, {
     name: 'Copy',
     path: '/other/copy',
@@ -81,6 +65,20 @@ const route = {
     component: FileToBase64,
     meta: {
       title: 'fileToBase64',
+    }
+  }, {
+    name: 'TextEllipsisDemo',
+    path: '/other/textEllipsis',
+    component: TextEllipsis,
+    meta: {
+      title: '文本溢出',
+    }
+  }, {
+    name: 'ScrollbarDemo',
+    path: '/other/scrollbar',
+    component: Scrollbar,
+    meta: {
+      title: '滚动条',
     }
   }]
 }
