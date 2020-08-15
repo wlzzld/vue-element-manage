@@ -1,10 +1,8 @@
-import api from '@/api';
-
-
+import api from "@/api";
 
 const account = {
   state: {
-    token: sessionStorage.getItem('token'),
+    token: sessionStorage.getItem("token"),
     userInfo: {},
     routeMap: []
   },
@@ -25,48 +23,53 @@ const account = {
       const username = loginInfo.username.trim();
       const password = loginInfo.password;
       return new Promise((resolve, reject) => {
-        api.account.login({
-          username,
-          password
-        }).then(res => {
-          const token = res.token;
-          sessionStorage.setItem('token', token);
-          commit('SET_TOKEN', token);
-          resolve();
-        }).catch((error) => {
-          reject(error);
-        })
-      })
+        api.account
+          .login({
+            username,
+            password
+          })
+          .then(res => {
+            const token = res.token;
+            sessionStorage.setItem("token", token);
+            commit("SET_TOKEN", token);
+            resolve();
+          })
+          .catch(error => {
+            reject(error);
+          });
+      });
     },
     // 通过token获取用户信息
     // 实际开发token放在请求头的Authorization中
     GetUserInfo({ commit, state }) {
-      return new Promise((resolve, reject) => {
-        api.account.getUserInfo({
+      //可以不用resolve包裹
+      return api.account
+        .getUserInfo({
           token: state.token
-        }).then(res => {
-          commit('SET_USER_INFO', res);
-          resolve(res);
-        }).catch((error) => {
-          reject(error);
         })
-      })
+        .then(res => {
+          commit("SET_USER_INFO", res);
+        })
+        .catch(error => {});
     },
     logout({ commit, state }) {
       return new Promise((resolve, reject) => {
-        api.account.logout({
-          token: state.token
-        }).then(res => {
-          commit('SET_TOKEN', '');
-          commit('SET_USER_INFO', {});
-          commit('SET_ROUTE_MAP', []);
-          sessionStorage.clear();
-          resolve();
-        }).catch((error) => {
-          reject(error);
-        })
-      })
+        api.account
+          .logout({
+            token: state.token
+          })
+          .then(res => {
+            commit("SET_TOKEN", "");
+            commit("SET_USER_INFO", {});
+            commit("SET_ROUTE_MAP", []);
+            sessionStorage.clear();
+            resolve();
+          })
+          .catch(error => {
+            reject(error);
+          });
+      });
     }
   }
-}
+};
 export default account;

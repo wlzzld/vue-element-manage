@@ -24,16 +24,46 @@ class Service {
     }
   }
 
-  initInstance() {
-    this.instance = axios.create(this.baseConfig);
-    this.setReqInterceptors();
-    this.setResnterceptors();
-  }
+
 
   // 设置请求头
   setHeader = (headers) => {
     this.baseConfig.headers = { ...this.baseConfig.headers, ...headers };
     this.initInstance();
+  }
+
+  // get请求
+  get = (url, data = {}, config = {}) => this.instance({ ...{ url, method: 'get', params: data }, ...config })
+
+  // post请求
+  post = (url, data = {}, config = {}) => this.instance({ ...{ url, method: 'post', data }, ...config })
+
+
+  // 不经过统一的axios实例的get请求
+  postOnly = (url, data = {}, config = {}) => axios({
+    ...this.baseConfig,
+    ...{ url, method: 'post', data },
+    ...config
+  })
+
+  // 不经过统一的axios实例的post请求
+  getOnly = (url, data = {}, config = {}) => axios({
+    ...this.baseConfig,
+    ...{ url, method: 'get', params: data },
+    ...config
+  })
+
+
+  // delete请求
+  deleteBody = (url, data = {}, config = {}) => this.instance({ ...{ url, method: 'delete', data }, ...config })
+
+  deleteParam = (url, data = {}, config = {}) => this.instance({ ...{ url, method: 'delete', params: data }, ...config })
+
+
+  initInstance() {
+    this.instance = axios.create(this.baseConfig);
+    this.setReqInterceptors();
+    this.setResnterceptors();
   }
 
   // 请求拦截器
@@ -79,32 +109,7 @@ class Service {
     );
   }
 
-  // get请求
-  get = (url, data = {}, config = {}) => this.instance({ ...{ url, method: 'get', params: data }, ...config })
 
-  // post请求
-  post = (url, data = {}, config = {}) => this.instance({ ...{ url, method: 'post', data }, ...config })
-
-
-  // 不经过统一的axios实例的get请求
-  postOnly = (url, data = {}, config = {}) => axios({
-    ...this.baseConfig,
-    ...{ url, method: 'post', data },
-    ...config
-  })
-
-  // 不经过统一的axios实例的post请求
-  getOnly = (url, data = {}, config = {}) => axios({
-    ...this.baseConfig,
-    ...{ url, method: 'get', params: data },
-    ...config
-  })
-
-
-  // delete请求
-  deleteBody = (url, data = {}, config = {}) => this.instance({ ...{ url, method: 'delete', data }, ...config })
-
-  deleteParam = (url, data = {}, config = {}) => this.instance({ ...{ url, method: 'delete', params: data }, ...config })
 
 }
 

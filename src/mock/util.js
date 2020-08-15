@@ -2,9 +2,9 @@ import { guid } from '@/utils/core';
 
 /**
  * 过滤对象的属性，数据表中有些字段前端不需要，可以使用此方法过滤掉
- * @param {String} fields 可变参数，需要的字段
+ * @param  fields 需要的字段组成的数组
  */
-const filterFieldByRow = (row, ...fields) => {
+const filterFieldByRow = (row, fields) => {
   const keys = Object.keys(row);
   const newRow = {};
   keys.forEach(key => {
@@ -16,8 +16,8 @@ const filterFieldByRow = (row, ...fields) => {
 }
 
 
-const filterFieldByTable = (table, ...fields) => {
-  return table.map(row => filterFieldByRow(row, ...fields))
+const filterFieldByTable = (table, fields) => {
+  return table.map(row => filterFieldByRow(row, fields))
 }
 
 

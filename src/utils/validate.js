@@ -1,26 +1,33 @@
 // 策略对象，封装校验规则
 const strategies = {
+  // 手机号
   mobile(value) {
     return /(^1[345789]\d{9}$)/.test(value);
   },
+  // 电子邮箱
   email(value) {
     return /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/.test(value);
   },
+  // 身份证号
   IDCard(value) {
     return /^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/.test(value);
   },
+  // 最少长度
   min(value, limit) {
     return value.length >= limit;
   },
+  // 最大长度
   max(value, limit) {
     return value.length <= limit;
   },
+  // 是否必填
   required(value, limit) {
     if (!limit) {
       return true;
     };
     return value ? true : false;
   },
+  // 自定义正则表达式校验
   pattern(value, limit) {
     return limit.test(value);
   }

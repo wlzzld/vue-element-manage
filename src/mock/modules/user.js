@@ -30,12 +30,15 @@ export default {
       validName = row.name.includes(name);
       return validName;
     })
-    const startIndex = (Number(pageNumber) - 1) * Number(pageSize);
-    const endIndex = startIndex + Number(pageSize);
+    const startNumber = (Number(pageNumber) - 1) * Number(pageSize);
+    const endNumber = startNumber + Number(pageSize);
     return {
       code: 200,
       data: {
-        list: util.filterFieldByTable(result.slice(startIndex, endIndex), 'id', 'name', 'mobilePhone', 'gender', 'roles', 'createDate', 'consume', 'age'),
+        list: util.filterFieldByTable(
+          result.slice(startNumber, endNumber),
+          ['id', 'name', 'mobilePhone', 'gender', 'roles', 'createDate', 'consume', 'age']
+        ),
         total: result.length
       }
     }
@@ -71,4 +74,3 @@ export default {
     }
   }
 }
-

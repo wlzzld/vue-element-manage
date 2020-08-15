@@ -56,13 +56,16 @@ export default {
       return validAuthor && validName && validType;
     })
 
-    const startIndex = (Number(pageNumber) - 1) * Number(pageSize);
-    const endIndex = startIndex + Number(pageSize);
+    const startNumber = (Number(pageNumber) - 1) * Number(pageSize);
+    const endNumber = startNumber + Number(pageSize);
 
     return {
       code: 200,
       data: {
-        list: util.filterFieldByTable(result.slice(startIndex, endIndex), 'id', 'name', 'author', 'createDate', 'type', 'browseNum'),
+        list: util.filterFieldByTable(
+          result.slice(startNumber, endNumber),
+          ['id', 'name', 'author', 'createDate', 'type', 'browseNum']
+        ),
         total: result.length
       }
     }

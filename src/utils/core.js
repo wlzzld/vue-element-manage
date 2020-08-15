@@ -1,11 +1,22 @@
+/* 核心工具 */
+
 
 //生成guid
 export function guid() {
-  let S4 = function () {
+  let S4 = function() {
     return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
   }
   return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
 }
+
+// 生成随机数
+export function random(min, max) {
+  const choice = max - min + 1;
+  return Math.floor(min + Math.random() * choice);
+}
+var num = random(2, 10);
+
+
 
 /**
  * 滚动,先慢后快，缓动的效果比easeIn动画明显
@@ -14,7 +25,7 @@ export function guid() {
  * @param {Number} duration  滚动所用的总时间
  * @param {Function} callback  滚动完成之后的回调
  */
-export function scroll(element, target, duration = 500, callback = () => { }) {
+export function scroll(element, target, duration = 500, callback = () => {}) {
   const startTime = Date.now();
   const move = () => {
     const passTime = Date.now() - startTime;
@@ -40,7 +51,7 @@ export function scroll(element, target, duration = 500, callback = () => { }) {
  * @param {Number} interval  每次运动的时间间隔
  * @param {Function} callback  动画完成之后的回调
  */
-export function animate(element, properties, interval = 20, callback = () => { }) {
+export function animate(element, properties, interval = 20, callback = () => {}) {
   clearInterval(element.timer);
   element.timer = setInterval(() => {
     let flag = true;
@@ -114,6 +125,7 @@ export function getOffset(elem) {
       return o.offsetLeft + getLeft(o.offsetParent) + (o.offsetParent ? o.offsetParent.clientLeft : 0);
     }
   }
+
   function getTop(o) {
     if (o == null) {
       return 0;
@@ -127,7 +139,7 @@ export function getOffset(elem) {
 // 节流
 export function throttle(fn, interval = 100) {
   let timer = null;
-  return function () {
+  return function() {
     const context = this;
     const args = arguments;
     if (!timer) {
@@ -142,7 +154,7 @@ export function throttle(fn, interval = 100) {
 // 防抖
 export function debounce(fn, interval = 100) {
   let timer = null;
-  return function () {
+  return function() {
     const context = this;
     const args = arguments;
     if (timer) {
@@ -156,75 +168,12 @@ export function debounce(fn, interval = 100) {
 
 
 
-// 计算模糊时间
-// type默认为pass表示计算经过了多少时间
-export function getSimpleTime(date, type = 'pass', simple = '') {
-  const second = 1000;
-  const minute = second * 60;
-  const hour = minute * 60;
-  const day = hour * 24;
-  const month = day * 30;
-  const year = month * 12;
-  const now = new Date();
-  const target = new Date(date);
-  let interval = 0;
-  let simpleTime = '';
-  if (type === 'pass') {
-    interval = now - target;
-  } else {
-    interval = target - now;
-  }
-  if (interval < 0) {
-    if (type === 'pass') {
-      simpleTime = simple || '未开始';
-    } else {
-      simpleTime = simple || '已结束';
-    }
-  } else if (0 < interval && interval <= minute) {
-    simpleTime = Math.floor(interval / second) + '秒';
-  } else if (minute < interval && interval <= hour) {
-    simpleTime = Math.floor(interval / minute) + '分钟';
-  } else if (hour < interval && interval <= day) {
-    simpleTime = Math.floor(interval / hour) + '小时';
-  } else if (day < interval && interval <= month) {
-    simpleTime = Math.floor(interval / day) + '天';
-  } else if (month < interval && interval <= year) {
-    simpleTime = Math.floor(interval / month) + '月';
-  } else if (year < interval) {
-    simpleTime = Math.floor(interval / year) + '年';
-  } else {
-    simpleTime = `${target.getFullYear()}-${target.getMonth()}-${target.getDate()}`;
-  }
-  if (interval > 0 && type === 'pass') {
-    simpleTime = simpleTime + '前';
-  }
-  return simpleTime;
-}
-
-// 将数值使用逗号隔开，一般用于金额的输入
-export function getCommaNumber(value) {
-  const list = value.toString().split('.');
-  const prefix = list[0].charAt(0) === '-' ? '-' : '';
-  let num = prefix ? list[0].slice(1) : list[0];
-  let result = '';
-  while (num.length > 3) {
-    result = `,${num.slice(-3)}${result}`;
-    num = num.slice(0, num.length - 3);
-  }
-  if (num) {
-    result = num + result;
-  }
-  const listSecond = list[1] ? '.' + list[1] : '';
-  return `${prefix}${result}${listSecond}`;
-}
-
-
 // 判断数据类型
 export const getType = value => value ? value.constructor.name.toLowerCase() : value;
 
 
 // 加载第三方脚本
-export function loadScript(src, callback = (err, res) => { }) {
+export function loadScript(src, callback = (err, res) => {}) {
   const existScript = document.getElementById(src);
   if (existScript) {
     callback(null, existScript);
@@ -233,15 +182,11 @@ export function loadScript(src, callback = (err, res) => { }) {
     script.src = src;
     script.id = src;
     document.body.appendChild(script);
-    script.onload = function () {
+    script.onload = function() {
       callback(null, script)
     }
-    script.onerror = function () {
+    script.onerror = function() {
       callback(new Error(`“${src}”加载失败`), script)
     }
   }
 }
-
-
-
-
