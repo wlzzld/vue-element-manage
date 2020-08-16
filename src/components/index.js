@@ -8,3 +8,4 @@ const requireAll = (requireContext) => requireContext.keys().map(requireContext)
 requireAll(requireContext)
 
 Vue.component('svg-icon', SvgIcon)
+ 
