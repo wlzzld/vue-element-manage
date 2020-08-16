@@ -1,19 +1,13 @@
-const InnerLayout = () =>
-  import(/* webpackChunkName:'innerLayout' */ '@/layouts/innerLayout')
+const InnerLayout = () => import(/* webpackChunkName:'innerLayout' */ '@/layouts/inner-layout')
 const Print = () => import(/* webpackChunkName:'print' */ '@/pages/other/print')
 const Excel = () => import(/* webpackChunkName:'excel' */ '@/pages/other/excel')
-const HtmlToCanvas = () =>
-  import(/* webpackChunkName:'htmlToCanvas' */ '@/pages/other/htmlToCanvas')
-const AMap = () => import(/* webpackChunkName:'aMap' */ '@/pages/other/aMap')
-const DragDialog = () =>
-  import(/* webpackChunkName:'dragDialog' */ '@/pages/other/dragDialog')
+const HtmlToCanvas = () => import(/* webpackChunkName:'htmlToCanvas' */ '@/pages/other/html-to-canvas')
+const AMap = () => import(/* webpackChunkName:'aMap' */ '@/pages/other/a-map')
+const DragDialog = () => import(/* webpackChunkName:'dragDialog' */ '@/pages/other/drag-dialog')
 const Copy = () => import(/* webpackChunkName:'copy' */ '@/pages/other/copy')
-const FileToBase64 = () =>
-  import(/* webpackChunkName:'fileToBase64' */ '@/pages/other/fileToBase64')
-const TextOverflow = () =>
-  import(/* webpackChunkName:'textOverflow' */ '@/pages/other/text-overflow')
-const Scrollbar = () =>
-  import(/* webpackChunkName:'scrollbar' */ '@/pages/other/scrollbar')
+const FileToBase64 = () => import(/* webpackChunkName:'fileToBase64' */ '@/pages/other/file-to-base64')
+const TextOverflow = () => import(/* webpackChunkName:'textOverflow' */ '@/pages/other/text-overflow')
+const Scrollbar = () => import(/* webpackChunkName:'scrollbar' */ '@/pages/other/scrollbar')
 
 const route = {
   name: 'Other',

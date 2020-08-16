@@ -1,4 +1,4 @@
-const InnerLayout = () => import( /* webpackChunkName:'innerLayout' */ '@/layouts/innerLayout');
+const InnerLayout = () => import( /* webpackChunkName:'innerLayout' */ '@/layouts/inner-layout');
 const Mine = () => import( /* webpackChunkName:'mine' */ '@/pages/mine');
 
 const route = {

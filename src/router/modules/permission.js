@@ -1,5 +1,5 @@
-const InnerLayout = () => import( /* webpackChunkName:'innerLayout' */ '@/layouts/innerLayout');
-const Permission = () => import( /* webpackChunkName:'permission' */ '@/pages/permission');
+const InnerLayout = () => import(/* webpackChunkName:'innerLayout' */ '@/layouts/inner-layout')
+const Permission = () => import(/* webpackChunkName:'permission' */ '@/pages/permission')
 
 const route = {
   path: '/permission',
@@ -9,15 +9,17 @@ const route = {
     title: '权限控制',
     icon: 'permission'
   },
-  children: [{
-    name: 'Permission',
-    path: '/permission/index',
-    component: Permission,
-    meta: {
-      title: '权限控制',
-      activePath: '/permission'
-    },
-  }]
+  children: [
+    {
+      name: 'Permission',
+      path: '/permission/index',
+      component: Permission,
+      meta: {
+        title: '权限控制',
+        activePath: '/permission'
+      }
+    }
+  ]
 }
 
-export default route;
+export default route

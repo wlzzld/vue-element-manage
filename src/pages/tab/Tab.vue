@@ -12,35 +12,40 @@
 </template>
 
 <script>
-  import TabPane from './components/TabPane';
+import TabPane from './components/TabPane'
 
-  export default {
-    name: 'Tab',
-    components: {
-      TabPane
-    },
-    data() {
-      return {
-        activeName: 'first',
-        tabOptions: [{
+export default {
+  name: 'Tab',
+  components: {
+    TabPane
+  },
+  data() {
+    return {
+      activeName: 'first',
+      tabOptions: [
+        {
           label: '标签页一',
           name: 'first'
-        }, {
+        },
+        {
           label: '标签页二',
           name: 'second'
-        }, {
+        },
+        {
           label: '标签页三',
           name: 'third'
-        }, {
+        },
+        {
           label: '标签页四',
           name: 'fourth'
-        }]
-      }
-    },
-    methods: {
-      handleClick(tab, event) {
-        console.log(tab, event);
-      }
+        }
+      ]
+    }
+  },
+  methods: {
+    handleClick(tab, event) {
+      console.log(tab, event)
     }
   }
+}
 </script>

@@ -148,7 +148,7 @@ import api from '@/api'
 import { scroll } from '@/utils/core'
 import tableMng from '@/utils/tableMng'
 import SectionTitle from '@/components/business/section-title'
-import ExportExcel from '@/components/base/excel/export-excel'
+import ExportExcel from '@/components/business/excel/export-excel'
 import Pagination from '@/components/base/pagination'
 
 export default {

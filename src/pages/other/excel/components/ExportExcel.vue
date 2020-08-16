@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import ExportExcel from '@/components/base/excel/export-excel'
+import ExportExcel from '@/components/business/excel/export-excel'
 
 export default {
   components: {

@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import UploadExcel from '@/components/base/excel/upload-excel'
+import UploadExcel from '@/components/business/excel/upload-excel'
 
 export default {
   components: {

@@ -1,5 +1,5 @@
-const InnerLayout = () => import( /* webpackChunkName:'innerLayout' */ '@/layouts/innerLayout');
-const Reload = () => import( /* webpackChunkName:'reload' */ '@/pages/reload');
+const InnerLayout = () => import(/* webpackChunkName:'innerLayout' */ '@/layouts/inner-layout')
+const Reload = () => import(/* webpackChunkName:'reload' */ '@/pages/reload')
 
 const route = {
   path: '/reload',
@@ -8,13 +8,15 @@ const route = {
   meta: {
     hiddenInMenu: true
   },
-  children: [{
-    path: '/reload/index',
-    component: Reload,
-    meta: {
-      title: '',
-    },
-  }]
+  children: [
+    {
+      path: '/reload/index',
+      component: Reload,
+      meta: {
+        title: ''
+      }
+    }
+  ]
 }
 
-export default route;
+export default route

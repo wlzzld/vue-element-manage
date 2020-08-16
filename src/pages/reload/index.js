@@ -1,1 +1,1 @@
-export { default } from './Reload';
+export { default } from './Reload'

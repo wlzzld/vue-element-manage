@@ -105,14 +105,17 @@
 
 ## 使用
 
-#### 运行
-
+#### 安装依赖
 ```
-npm run dev
+yarn
+```
+
+#### 运行
+```
+yarn start
 ```
 
 #### 构建
-
 ```
-npm run build
+yarn build
 ```
