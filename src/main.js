@@ -19,7 +19,7 @@ import '@/components';
 import '@/directive';
 import '@/filters';
 
-import reminder from '@/components/Reminder/index.js'
+import reminder from '@/components/base/reminder'
 
 
 Vue.use(ElementUI, {

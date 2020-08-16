@@ -21,43 +21,43 @@
 </template>
 
 <script>
-  import StyleSetting from '@/components/setting/StyleSetting';
-  import SizeSetting from '@/components/setting/SizeSetting';
+import StyleSetting from '@/components/business/setting/style-setting'
+import SizeSetting from '@/components/business/setting/size-setting'
 
-  export default {
-    components: {
-      StyleSetting,
-      SizeSetting
-    },
-    data() {
-      return {
-        // 初始打开抽屉，不然el-drawer组件不会渲染，其中的设置也不会生效
-        drawer: true,
-        tagVisible: this.$store.getters.tagVisible,
-      };
-    },
-    mounted() {
-      this.drawer = false;
-    },
-    watch: {
-      tagVisible(value) {
-        this.$store.commit('SET_TAG_VISIBLE', value);
-      }
+export default {
+  components: {
+    StyleSetting,
+    SizeSetting
+  },
+  data() {
+    return {
+      // 初始打开抽屉，不然el-drawer组件不会渲染，其中的设置也不会生效
+      drawer: true,
+      tagVisible: this.$store.getters.tagVisible
     }
-  };
+  },
+  mounted() {
+    this.drawer = false
+  },
+  watch: {
+    tagVisible(value) {
+      this.$store.commit('SET_TAG_VISIBLE', value)
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
-  .setting {
-    position: relative;
+.setting {
+  position: relative;
 
-    .setting__icon {
-      position: absolute;
-      left: -40px;
-      line-height: 50px;
-      font-size: 28px;
-      color: #fff;
-      cursor: pointer;
-    }
+  .setting__icon {
+    position: absolute;
+    left: -40px;
+    line-height: 50px;
+    font-size: 28px;
+    color: #fff;
+    cursor: pointer;
   }
+}
 </style>

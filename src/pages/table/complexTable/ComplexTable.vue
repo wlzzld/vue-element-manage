@@ -51,7 +51,7 @@
 </template>
 
 <script>
-  import Pagination from '@/components/pagination';
+  import Pagination from '@/components/base/pagination';
   import { scroll } from '@/utils/core';
   import api from '@/api';
   import tableMng from '@/utils/tableMng';

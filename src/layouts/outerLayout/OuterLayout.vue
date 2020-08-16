@@ -10,41 +10,40 @@
     </div>
 
     <style-setting class="style-setting" />
-
   </div>
 </template>
 
 <script>
-  import StyleSetting from '@/components/setting/StyleSetting';
+import StyleSetting from '@/components/business/setting/style-setting'
 
-  export default {
-    components: {
-      StyleSetting
-    }
+export default {
+  components: {
+    StyleSetting
   }
+}
 </script>
 
 <style lang="scss" scoped>
-  .outer-layout {
-    min-height: 100vh;
-    background: url(~@/assets/images/layout/outer_bg.jpg) no-repeat fixed center;
-    background-size: cover;
+.outer-layout {
+  min-height: 100vh;
+  background: url(~@/assets/images/layout/outer_bg.jpg) no-repeat fixed center;
+  background-size: cover;
 
-    .outer-layout__header {
-      padding-top: 60px;
-      text-align: center;
-      font-size: 32px;
-      color: #fff;
-    }
-
-    .outer-layout__page {
-      width: 440px;
-      margin: 0 auto;
-      margin-top: 60px;
-    }
-
-    .style-setting {
-      display: none;
-    }
+  .outer-layout__header {
+    padding-top: 60px;
+    text-align: center;
+    font-size: 32px;
+    color: #fff;
   }
+
+  .outer-layout__page {
+    width: 440px;
+    margin: 0 auto;
+    margin-top: 60px;
+  }
+
+  .style-setting {
+    display: none;
+  }
+}
 </style>

@@ -39,18 +39,21 @@ const account = {
           });
       });
     },
-    // 通过token获取用户信息
     // 实际开发token放在请求头的Authorization中
     GetUserInfo({ commit, state }) {
-      //可以不用resolve包裹
-      return api.account
-        .getUserInfo({
-          token: state.token
-        })
-        .then(res => {
-          commit("SET_USER_INFO", res);
-        })
-        .catch(error => {});
+      return new Promise((resolve, reject) => {
+        api.account
+          .getUserInfo({
+            token: state.token
+          })
+          .then(res => {
+            commit("SET_USER_INFO", res);
+            resolve(res);
+          })
+          .catch(error => {
+            reject(error);
+          });
+      });
     },
     logout({ commit, state }) {
       return new Promise((resolve, reject) => {

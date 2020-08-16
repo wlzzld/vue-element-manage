@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  import Pdf from '@/components/pdf';
+  import Pdf from '@/components/business/pdf';
 
   export default {
     name: 'PdfComponent',

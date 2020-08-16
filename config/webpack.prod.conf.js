@@ -1,14 +1,12 @@
-const path = require('path');
-const merge = require('webpack-merge');
-const baseWebpackConfig = require('./webpack.base.conf.js');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
+const path = require('path')
+const { merge } = require('webpack-merge')
+const baseWebpackConfig = require('./webpack.base.conf.js')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const resolve = (dir) => {
   return path.resolve(process.cwd(), dir)
 }
-
 
 module.exports = merge(baseWebpackConfig, {
   mode: 'production',
@@ -19,8 +17,8 @@ module.exports = merge(baseWebpackConfig, {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "css/[name].[contenthash:6].css",
-      chunkFilename: "css/[name].[contenthash:6].css"
+      filename: 'css/[name].[contenthash:6].css',
+      chunkFilename: 'css/[name].[contenthash:6].css'
     }),
     new CleanWebpackPlugin()
   ],
@@ -36,7 +34,7 @@ module.exports = merge(baseWebpackConfig, {
           test: /[\\/]node_modules[\\/]/,
           chunks: 'initial',
           enforce: true,
-          priority: 10,
+          priority: 10
         },
         common: {
           minChunks: 2,
@@ -50,25 +48,31 @@ module.exports = merge(baseWebpackConfig, {
           name: 'styles',
           test: /\.(sa|sc|le|c)ss$/,
           chunks: 'all',
-          enforce: true,
-        },
-      },
-    },
+          enforce: true
+        }
+      }
+    }
   },
   module: {
-    rules: [{
-      test: /\.(sa|sc|c)ss$/,
-      use: [{
-        loader: MiniCssExtractPlugin.loader,
-        options: {
-          publicPath: '../',
-        }
-      }, 'css-loader', {
-        loader: 'sass-loader',
-        options: {
-          data: `@import "./src/assets/styles/variable.scss";@import "./src/assets/styles/mixin.scss";`
-        }
-      }]
-    }]
-  },
+    rules: [
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: '../'
+            }
+          },
+          'css-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              data: `@import "./src/assets/styles/variable.scss";@import "./src/assets/styles/mixin.scss";`
+            }
+          }
+        ]
+      }
+    ]
+  }
 })

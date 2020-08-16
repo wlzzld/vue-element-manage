@@ -1,5 +1,5 @@
 <template>
-  <el-tabs v-model="activeName" type="border-card" >
+  <el-tabs v-model="activeName" type="border-card">
     <el-tab-pane label="导出Excel" name="exportExcel">
       <ExportExcel />
     </el-tab-pane>
@@ -10,19 +10,19 @@
 </template>
 
 <script>
-  import ExportExcel from './components/ExportExcel';
-  import UploadExcel from './components/UploadExcel';
+import ExportExcel from './components/ExportExcel'
+import UploadExcel from './components/UploadExcel'
 
-  export default {
-    name:'Excel',
-    components: {
-      ExportExcel,
-      UploadExcel
-    },
-    data() {
-      return {
-        activeName: 'exportExcel'
-      }
+export default {
+  name: 'Excel',
+  components: {
+    ExportExcel,
+    UploadExcel
+  },
+  data() {
+    return {
+      activeName: 'exportExcel'
     }
   }
+}
 </script>
