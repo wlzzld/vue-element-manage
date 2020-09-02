@@ -1,24 +1,37 @@
 <template>
-  <svg class="svg-icon" :class="iconClass" aria-hidden="true">
-    <use :xlink:href="icon"></use>
+  <svg class="svg-icon" :class="iconClass" :style="iconStyle" aria-hidden="true">
+    <use :xlink:href="iconName"></use>
   </svg>
 </template>
 
 <script>
 export default {
   props: {
-    iconName: {
+    name: {
       required: true,
       default: ''
     },
     iconClass: {
       type: String,
       default: ''
+    },
+    size: {
+      type: [String, Number],
+      default: 18
+    },
+    color: {
+      type: String
     }
   },
   computed: {
-    icon() {
-      return '#icon-' + this.iconName
+    iconName() {
+      return '#icon-' + this.name
+    },
+    iconStyle() {
+      return {
+        fontSize: typeof this.size === 'string' ? this.size : `${this.size}px`,
+        color: this.color
+      }
     }
   }
 }

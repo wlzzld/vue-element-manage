@@ -17,7 +17,7 @@
     <br />
 
     <h3>2.动态创建iframe</h3>
-    <p>使用这两种方式<strong>需要将要打印的内容的样式编写为内联样式</strong> 。</p>
+    <p>使用这种方式<strong>需要将要打印的内容的样式编写为内联样式,注意字体单位为pt</strong> 。</p>
     <el-button type="primary" @click="print2">动态创建iframe</el-button>
     <p></p>
     <br />
@@ -38,7 +38,7 @@
     <p>#需要将要打印的页面放在static文件夹中</p>
     <br />
 
-    <div>综合以上，个人认为方法4最优。实际开发可根据具体业务需求选择。</div>
+        <div>综合以上，个人认为方法2最优，可以做成一个组件，要打印的数据通过props传入。实际开发可根据具体业务需求选择。</div>
   </div>
 </template>
 <script>
@@ -47,7 +47,7 @@ export default {
   methods: {
     print1(id) {
       const body = document.body.innerHTML
-      const printContent = document.getElementById('print').innerHTML
+      const printContent = document.querySelector('#print').innerHTML
       document.body.innerHTML = printContent
       window.print()
       document.body.innerHTML = body
@@ -59,7 +59,7 @@ export default {
       document.body.appendChild(iframe)
 
       const doc = iframe.contentWindow.document
-      const printContent = document.getElementById('print').innerHTML
+      const printContent = document.querySelector('#print').innerHTML
       doc.write(printContent)
       doc.close()
 
@@ -68,7 +68,7 @@ export default {
       document.body.removeChild(iframe)
     },
     print3() {
-      const printContent = document.getElementById('print').innerHTML
+      const printContent = document.querySelector('#print').innerHTML
       const wind = window.open(
         '',
         'printwindow',
@@ -78,7 +78,7 @@ export default {
       wind.print()
     },
     print4() {
-      const printNode = document.getElementById('print')
+      const printNode = document.querySelector('#print')
       const print = printNode.cloneNode(true)
       const childs = Array.from(document.body.children).filter((child) => child.nodeName != 'SCRIPT')
       for (let i = childs.length; i--; ) {
@@ -94,7 +94,7 @@ export default {
       document.body.removeChild(print)
     },
     print5() {
-      const frame = document.getElementById('printFrame')
+      const frame = document.querySelector('#printFrame')
       // src/static文件夹中的文件需要复制到dist文件夹中
       frame.setAttribute('src', './static/print/print.html')
     }

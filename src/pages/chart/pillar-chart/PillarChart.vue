@@ -24,7 +24,6 @@
       </el-col>
     </el-row>
 
-
     <el-row :gutter="20">
       <el-col :lg="12" :sm="24">
         <p class="title">辅助元素</p>
@@ -37,52 +36,49 @@
       </el-col>
     </el-row>
 
-
     <el-row :gutter="20">
       <el-col :lg="12" :sm="24">
         <p class="title">堆叠柱状图</p>
         <chart-overlay></chart-overlay>
       </el-col>
 
-      <el-col :lg="12" :sm="24">
-
-      </el-col>
+      <el-col :lg="12" :sm="24"> <show /> </el-col>
     </el-row>
-
-
   </div>
 </template>
 
 <script>
-  import ChartBase from './components/ChartBase';
-  import ChartCustom from './components/ChartCustom';
-  import ChartGroup1 from './components/ChartGroup1';
-  import ChartGroup2 from './components/ChartGroup2';
-  import ChartGuide from './components/ChartGuide';
-  import ChartWaterfall from './components/ChartWaterfall';
-  import ChartOverlay from './components/ChartOverlay';
+import ChartBase from './components/ChartBase'
+import ChartCustom from './components/ChartCustom'
+import ChartGroup1 from './components/ChartGroup1'
+import ChartGroup2 from './components/ChartGroup2'
+import ChartGuide from './components/ChartGuide'
+import ChartWaterfall from './components/ChartWaterfall'
+import ChartOverlay from './components/ChartOverlay'
+import Show from './components/Show'
 
-  export default {
-    name: 'PillarChart',
-    components: {
-      ChartBase,
-      ChartCustom,
-      ChartGroup1,
-      ChartGroup2,
-      ChartGuide,
-      ChartWaterfall,
-      ChartOverlay,
-    }
+export default {
+  name: 'PillarChart',
+  components: {
+    ChartBase,
+    ChartCustom,
+    ChartGroup1,
+    ChartGroup2,
+    ChartGuide,
+    ChartWaterfall,
+    ChartOverlay,
+    Show
   }
+}
 </script>
 
 <style lang="scss" scoped>
-  .chart-wrap {
-    .title {
-      font-size: 16px;
-      font-weight: 600;
-      text-indent: 2em;
-      line-height: 40px;
-    }
+.chart-wrap {
+  .title {
+    font-size: 16px;
+    font-weight: 600;
+    text-indent: 2em;
+    line-height: 40px;
   }
+}
 </style>

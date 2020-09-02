@@ -1,23 +1,15 @@
 <template>
   <div>
-
+    <svg-icon name="password" color="pink" :size="40"></svg-icon>
   </div>
 </template>
 
 <script>
-  export default {
-    name: 'Blank',
-    data() {
-      return {
-
-      }
-    },
-    created() {},
-    mounted() {},
-    updated() {},
-    methods: {},
+export default {
+  data() {
+    return {}
   }
+}
 </script>
-<style scoped>
 
-</style>
+<style lang="scss" scoped></style>

@@ -1,7 +1,7 @@
 <template>
   <div class="outer-layout">
     <div class="outer-layout__header">
-      <svg-icon icon-name="logo" />
+      <svg-icon name="logo"></svg-icon>
       <span>后台管理系统</span>
     </div>
 

@@ -1,6 +1,5 @@
 <template>
   <div class="chart-wrap">
-
     <el-row :gutter="20">
       <el-col :lg="12" :sm="24">
         <p class="title">基础饼状图</p>
@@ -90,59 +89,60 @@
         <chart-circle6></chart-circle6>
       </el-col>
 
-      <el-col :lg="12" :sm="24">
-
-      </el-col>
+      <el-col :lg="12" :sm="24"> </el-col>
+      <Show />
     </el-row>
   </div>
 </template>
 
 <script>
-  import ChartBase from './components/ChartBase';
-  import ChartLabel from './components/ChartLabel';
-  import ChartFan from './components/ChartFan';
-  import ChartCustom from './components/ChartCustom';
-  import ChartPetal from './components/ChartPetal';
-  import ChartRose from './components/ChartRose';
-  import ChartTexture from './components/ChartTexture';
-  import ChartTriangle from './components/ChartTriangle';
-  import ChartSpecial from './components/ChartSpecial';
-  import ChartCircle1 from './components/ChartCircle1';
-  import ChartCircle2 from './components/ChartCircle2';
-  import ChartCircle3 from './components/ChartCircle3';
-  import ChartCircle4 from './components/ChartCircle4';
-  import ChartCircle5 from './components/ChartCircle5';
-  import ChartCircle6 from './components/ChartCircle6';
+import ChartBase from './components/ChartBase'
+import ChartLabel from './components/ChartLabel'
+import ChartFan from './components/ChartFan'
+import ChartCustom from './components/ChartCustom'
+import ChartPetal from './components/ChartPetal'
+import ChartRose from './components/ChartRose'
+import ChartTexture from './components/ChartTexture'
+import ChartTriangle from './components/ChartTriangle'
+import ChartSpecial from './components/ChartSpecial'
+import ChartCircle1 from './components/ChartCircle1'
+import ChartCircle2 from './components/ChartCircle2'
+import ChartCircle3 from './components/ChartCircle3'
+import ChartCircle4 from './components/ChartCircle4'
+import ChartCircle5 from './components/ChartCircle5'
+import ChartCircle6 from './components/ChartCircle6'
+import Show from './components/Show'
 
-  export default {
-    name: "PieChart",
-    components: {
-      ChartBase,
-      ChartLabel,
-      ChartFan,
-      ChartCustom,
-      ChartPetal,
-      ChartRose,
-      ChartTexture,
-      ChartTriangle,
-      ChartSpecial,
-      ChartCircle1,
-      ChartCircle2,
-      ChartCircle3,
-      ChartCircle4,
-      ChartCircle5,
-      ChartCircle6
-    }
+export default {
+  name: 'PieChart',
+  components: {
+    ChartBase,
+    ChartLabel,
+    ChartFan,
+    ChartCustom,
+    ChartPetal,
+    ChartRose,
+    ChartTexture,
+    ChartTriangle,
+    ChartSpecial,
+    ChartCircle1,
+    ChartCircle2,
+    ChartCircle3,
+    ChartCircle4,
+    ChartCircle5,
+    ChartCircle6,
+    Show
   }
+}
 </script>
 
 <style lang="scss" scoped>
-  .chart-wrap {
-    .title {
-      font-size: 16px;
-      font-weight: 600;
-      text-indent: 2em;
-      line-height: 40px;
-    }
+.chart-wrap {
+  .title {
+    font-size: 16px;
+    font-weight: 600;
+    text-indent: 2em;
+    line-height: 40px;
   }
+}
 </style>
