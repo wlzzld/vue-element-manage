@@ -10,116 +10,116 @@
       :layout="layout"
       :background="background"
       @size-change="handlePageSizeChange"
-      @current-change="handlePageNumberChange">
+      @current-change="handlePageNumberChange"
+    >
     </el-pagination>
   </div>
 </template>
 
 <script>
-  export default {
-    props: {
-      total: {
-        required: true,
-        type: Number
-      },
-      pageNumber: {
-        type: Number,
-        default: 1
-      },
-      pageSize: {
-        type: Number,
-        default: 10
-      },
-      pageSizes: {
-        type: Array,
-        default () {
-          return [10, 20, 30, 50, 1000];
-        }
-      },
-      layout: {
-        type: String,
-        default: 'total, sizes, prev, pager, next, jumper'
-      },
-      background: {
-        type: Boolean,
-        default: true
-      },
-      position: {
-        validator: function(value) {
-          return ['left', 'center', 'right'].includes(value);
-        },
-        default: 'center'
+export default {
+  props: {
+    total: {
+      required: true,
+      type: Number
+    },
+    pageNumber: {
+      type: Number,
+      default: 1
+    },
+    pageSize: {
+      type: Number,
+      default: 10
+    },
+    pageSizes: {
+      type: Array,
+      default() {
+        return [10, 20, 30, 50, 1000]
       }
     },
-    computed: {
-      currentPage: {
-        get() {
-          return this.pageNumber;
-        },
-        set(val) {
-          this.$emit('update:pageNumber', val);
-        }
+    layout: {
+      type: String,
+      default: 'total, sizes, prev, pager, next, jumper'
+    },
+    background: {
+      type: Boolean,
+      default: true
+    },
+    position: {
+      validator: function(value) {
+        return ['left', 'center', 'right'].includes(value)
       },
-      pageSizeNum: {
-        get() {
-          return this.pageSize;
-        },
-        set(val) {
-          this.$emit('update:pageSize', val);
-        }
+      default: 'center'
+    }
+  },
+  computed: {
+    currentPage: {
+      get() {
+        return this.pageNumber
+      },
+      set(val) {
+        this.$emit('update:pageNumber', val)
       }
     },
-    methods: {
-      handlePageSizeChange(val) {
-        this.$emit('pagination', val);
+    pageSizeNum: {
+      get() {
+        return this.pageSize
       },
-      handlePageNumberChange(val) {
-        this.$emit('pagination', val)
+      set(val) {
+        this.$emit('update:pageSize', val)
       }
     }
-  };
+  },
+  methods: {
+    handlePageSizeChange(val) {
+      this.$emit('pagination', val)
+    },
+    handlePageNumberChange(val) {
+      this.$emit('pagination', val)
+    }
+  }
+}
 </script>
 
 <style lang="scss">
-  .pagination {
-    height: 32px;
+.pagination {
+  height: 32px;
 
-    &--left {
-      float: left;
-    }
+  &--left {
+    float: left;
+  }
 
-    &--center {
-      text-align: center;
-    }
+  &--center {
+    text-align: center;
+  }
 
-    &--right {
-      float: right;
-    }
+  &--right {
+    float: right;
+  }
 
-    .el-pagination .el-pager {
-      .number {
-        font-weight: normal;
-        color: $auxiliary-text-color;
-      }
-
-      .el-icon-more {
-        border: none !important;
-      }
-    }
-
-
-    .el-pagination.is-background .btn-prev,
-    .el-pagination.is-background .btn-next,
-    .el-pagination.is-background .el-pager li {
-      background-color: #fff;
-      border: $base-border;
-      border-radius: 4px;
-    }
-
-    .el-pagination.is-background .el-pager li:not(.disabled).active {
-      border-color: var(--theme);
-      background-color: #fff;
+  .el-pagination .el-pager {
+    .number {
+      font-weight: normal;
       color: $auxiliary-text-color;
     }
+
+    .el-icon-more {
+      border: none !important;
+    }
   }
+
+  .el-pagination.is-background .btn-prev,
+  .el-pagination.is-background .btn-next,
+  .el-pagination.is-background .el-pager li {
+    background-color: #fff;
+    border: $base-border;
+    border-radius: 4px;
+  }
+
+  .el-pagination.is-background .el-pager li:not(.disabled).active {
+    border-color: var(--theme);
+    background-color: #fff;
+    color: $auxiliary-text-color;
+  }
+}
 </style>

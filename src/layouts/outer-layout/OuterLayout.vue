@@ -6,10 +6,10 @@
     </div>
 
     <div class="outer-layout__page">
-      <router-view />
+      <router-view></router-view>
     </div>
 
-    <style-setting class="style-setting" />
+    <style-setting class="style-setting"></style-setting>
   </div>
 </template>
 

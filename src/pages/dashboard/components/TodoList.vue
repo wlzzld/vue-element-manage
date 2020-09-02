@@ -14,7 +14,7 @@
 
       <el-table-column>
         <template slot-scope="scope">
-          <span :class="{delete:scope.row.isCompleted}">{{scope.row.content}}</span>
+          <span :class="{ delete: scope.row.isCompleted }">{{ scope.row.content }}</span>
         </template>
       </el-table-column>
 
@@ -25,88 +25,91 @@
           <el-button type="text" @click="handleDelete(scope.$index)">删除</el-button>
         </template>
       </el-table-column>
-
     </el-table>
   </el-card>
 </template>
 
 <script>
-  import api from '@/api';
+import api from '@/api'
 
-  export default {
-    data() {
-      return {
-        taskData: []
-      }
+export default {
+  data() {
+    return {
+      taskData: []
+    }
+  },
+  created() {
+    this.getTask()
+  },
+  methods: {
+    async getTask() {
+      const data = await api.dashboard.getTodoListData()
+      this.taskData = data
     },
-    created() {
-      this.getTask();
-    },
-    methods: {
-      async getTask() {
-        const data = await api.dashboard.getTodoListData();
-        this.taskData = data;
-      },
-      handleAdd() {
-        this.$prompt('添加新的待办事项:', '', {
-          inputPlaceholder: '请输入待办事项',
-          inputValidator(value) {
-            if (!value) {
-              return '内容不能为空！'
-            }
-          },
-        }).then(res => {
+    handleAdd() {
+      this.$prompt('添加新的待办事项:', '', {
+        inputPlaceholder: '请输入待办事项',
+        inputValidator(value) {
+          if (!value) {
+            return '内容不能为空！'
+          }
+        }
+      })
+        .then((res) => {
           this.taskData.unshift({
             isCompleted: false,
             content: res.value
           })
-        }).catch(() => {})
-      },
-      handleEdit(index, row) {
-        this.$prompt('修改待办事项', '', {
-          inputValue: row.content,
-          inputPlaceholder: '请输入待办事项',
-          inputValidator(value) {
-            if (!value) {
-              return '内容不能为空！'
-            }
-          },
-        }).then(res => {
-          this.taskData[index].content = res.value;
-        }).catch(() => {})
-      },
-      handleDelete(index) {
-        this.taskData.splice(index, 1);
-      }
+        })
+        .catch(() => {})
+    },
+    handleEdit(index, row) {
+      this.$prompt('修改待办事项', '', {
+        inputValue: row.content,
+        inputPlaceholder: '请输入待办事项',
+        inputValidator(value) {
+          if (!value) {
+            return '内容不能为空！'
+          }
+        }
+      })
+        .then((res) => {
+          this.taskData[index].content = res.value
+        })
+        .catch(() => {})
+    },
+    handleDelete(index) {
+      this.taskData.splice(index, 1)
     }
   }
+}
 </script>
 <style lang="scss" scoped>
-  .dashboard-todolist {
-    .dashboard-todolist__header {
-      font-size: 16px;
-    }
-
-    .button--add {
-      float: right;
-      padding: 3px 0;
-    }
-
-    .delete {
-      text-decoration: line-through;
-      color: rgba(0, 0, 0, .4);
-    }
+.dashboard-todolist {
+  .dashboard-todolist__header {
+    font-size: 16px;
   }
+
+  .button--add {
+    float: right;
+    padding: 3px 0;
+  }
+
+  .delete {
+    text-decoration: line-through;
+    color: rgba(0, 0, 0, 0.4);
+  }
+}
 </style>
 
 <style lang="scss">
-  .dashboard-todolist {
-    .el-card__body {
-      padding-top: 0px;
-    }
-
-    .el-table__header-wrapper {
-      display: none;
-    }
+.dashboard-todolist {
+  .el-card__body {
+    padding-top: 0px;
   }
+
+  .el-table__header-wrapper {
+    display: none;
+  }
+}
 </style>

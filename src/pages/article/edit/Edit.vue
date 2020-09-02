@@ -2,7 +2,7 @@
   <div class="article-edit">
     <div class="article-edit__header">
       <div class="title">
-        <section-title :name="articleId ? '编辑文章' : '新增文章'" />
+        <section-title :name="articleId ? '编辑文章' : '新增文章'"></section-title>
       </div>
       <div class="operation">
         <el-button
@@ -12,16 +12,14 @@
           @click="handleSubmit"
           >发布</el-button
         >
-        <el-button type="info" icon="el-icon-circle-close" @click="handleClose"
-          >取消</el-button
-        >
+        <el-button type="info" icon="el-icon-circle-close" @click="handleClose">取消</el-button>
       </div>
     </div>
 
     <el-row>
       <el-col :lg="16">
         <!-- 一个组件上的v-model默认会利用名为value的prop和名为input的事件。 -->
-        <tinymce v-model="articleDetail.content" :height="660" />
+        <tinymce v-model="articleDetail.content" :height="660"></tinymce>
       </el-col>
 
       <el-col :lg="8">
@@ -41,11 +39,7 @@
           </el-form-item>
 
           <el-form-item label="文章类型:" prop="type">
-            <el-select
-              v-model="articleDetail.type"
-              placeholder="请选择文章类型"
-              clearable
-            >
+            <el-select v-model="articleDetail.type" placeholder="请选择文章类型" clearable>
               <el-option
                 v-for="item in tableMng.getTable('article')"
                 :key="item.id"
@@ -77,14 +71,14 @@
               name="smfile"
               :round="false"
               width="80px"
-            />
+            ></avatar-upload>
           </el-form-item>
 
           <el-form-item label="附件上传:">
             <drag-upload
               v-model="articleDetail.accessory"
               action="https://jsonplaceholder.typicode.com/posts"
-            />
+            ></drag-upload>
           </el-form-item>
         </el-form>
       </el-col>
@@ -166,9 +160,7 @@ export default {
         this.articleDetail = {
           id: data.id,
           name: data.name,
-          createDate: this.$dayjs(data.createDate).format(
-            'YYYY-MM-DD HH:mm:ss'
-          ),
+          createDate: this.$dayjs(data.createDate).format('YYYY-MM-DD HH:mm:ss'),
           imageURL: data.imageURL,
           type: data.type,
           brief: data.brief,

@@ -18,7 +18,9 @@
       </ul>
 
       <el-dialog :visible.sync="dialogVisible">
-        <span slot="title">图片来源：<a href="https://dribbble.com/" target="_blank">dribbble</a></span>
+        <span slot="title"
+          >图片来源：<a href="https://dribbble.com/" target="_blank">dribbble</a></span
+        >
         <el-carousel height="400px" arrow="always" :autoplay="false" indicator-position="none">
           <el-carousel-item v-for="gif in gifList" :key="gif">
             <img class="dialog-img" :src="gif" alt="" />

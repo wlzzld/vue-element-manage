@@ -9,31 +9,31 @@
 </template>
 
 <script>
-  import api from '@/api';
+import api from '@/api'
 
-  export default {
-    props: {
-      name: {
-        required: true,
-        type: String,
-      }
-    },
-    data() {
-      return {
-        tableData: [],
-        tabLoading: false
-      }
-    },
-    created() {
-      this.getList();
-    },
-    methods: {
-      async getList() {
-        this.tabLoading = true;
-        const data = await api.tab.getList({ name: this.name });
-        this.tableData = data;
-        this.tabLoading = false;
-      }
+export default {
+  props: {
+    name: {
+      required: true,
+      type: String
+    }
+  },
+  data() {
+    return {
+      tableData: [],
+      tabLoading: false
+    }
+  },
+  created() {
+    this.getList()
+  },
+  methods: {
+    async getList() {
+      this.tabLoading = true
+      const data = await api.tab.getList({ name: this.name })
+      this.tableData = data
+      this.tabLoading = false
     }
   }
+}
 </script>

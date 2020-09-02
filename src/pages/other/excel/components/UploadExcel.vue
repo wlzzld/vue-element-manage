@@ -2,12 +2,7 @@
   <div>
     <upload-excel :before-upload="beforeUpload" :on-success="handleSuccess" />
     <el-table :data="tableData" border highlight-current-row>
-      <el-table-column
-        v-for="item of tableHeader"
-        :key="item"
-        :prop="item"
-        :label="item"
-      />
+      <el-table-column v-for="item of tableHeader" :key="item" :prop="item" :label="item" />
     </el-table>
   </div>
 </template>
@@ -31,7 +26,7 @@ export default {
       if (!isLt20M) {
         this.$message.error('上传的文件大小不能超过 20MB!')
       }
-      return isLt2M
+      return isLt20M
     },
     handleSuccess(header, result) {
       this.tableHeader = header

@@ -14,15 +14,7 @@
         </el-button>
         <export-excel
           file-name="用户数据表"
-          :header="[
-            '序号',
-            '姓名',
-            '手机',
-            '性别',
-            '角色',
-            '创建时间',
-            '累计消费额(元)'
-          ]"
+          :header="['序号', '姓名', '手机', '性别', '角色', '创建时间', '累计消费额(元)']"
           :filter-filed="[
             'index',
             'name',
@@ -49,11 +41,7 @@
         ></el-input>
       </el-form-item>
       <el-form-item label="性别:">
-        <el-select
-          v-model="queryCondition.gender"
-          placeholder="请选择性别"
-          clearable
-        >
+        <el-select v-model="queryCondition.gender" placeholder="请选择性别" clearable>
           <el-option
             v-for="item in tableMng.getTable('gender')"
             :key="item.id"
@@ -63,12 +51,7 @@
         </el-select>
       </el-form-item>
       <el-form-item label="角色:">
-        <el-select
-          v-model="queryCondition.roles"
-          placeholder="请选择角色"
-          multiple
-          clearable
-        >
+        <el-select v-model="queryCondition.roles" placeholder="请选择角色" multiple clearable>
           <el-option
             v-for="item in tableMng.getTable('role')"
             :key="item.id"
@@ -94,17 +77,9 @@
         @selection-change="handleSelectedRows"
       >
         <el-table-column type="selection" width="50px"></el-table-column>
-        <el-table-column
-          prop="index"
-          label="序号"
-          width="80px"
-        ></el-table-column>
+        <el-table-column prop="index" label="序号" width="80px"></el-table-column>
         <el-table-column prop="name" label="姓名"></el-table-column>
-        <el-table-column
-          prop="mobilePhone"
-          label="手机"
-          width="120px"
-        ></el-table-column>
+        <el-table-column prop="mobilePhone" label="手机" width="120px"></el-table-column>
         <el-table-column prop="gender" label="性别" width="120px">
           <template slot-scope="scope">
             <span>{{ tableMng.getNameById('gender', scope.row.gender) }}</span>
@@ -118,11 +93,7 @@
             </span>
           </template>
         </el-table-column>
-        <el-table-column
-          prop="createDate"
-          label="创建时间"
-          sortable
-        ></el-table-column>
+        <el-table-column prop="createDate" label="创建时间" sortable></el-table-column>
         <el-table-column
           prop="consume"
           label="累计消费额(元)"
@@ -135,10 +106,7 @@
               编辑
             </el-button>
             <el-divider direction="vertical"></el-divider>
-            <el-button
-              type="text"
-              @click="handleDelete(scope.$index, scope.row)"
-            >
+            <el-button type="text" @click="handleDelete(scope.$index, scope.row)">
               删除
             </el-button>
           </template>
@@ -155,12 +123,7 @@
     />
 
     <!-- 用户编辑/新增 -->
-    <edit
-      :id="editId"
-      :visible="editVisible"
-      @onClose="handleClose"
-      @onSave="handleSave"
-    />
+    <edit :id="editId" :visible="editVisible" @onClose="handleClose" @onSave="handleSave" />
   </div>
 </template>
 
@@ -210,18 +173,12 @@ export default {
       this.userList = data.list.map((item, index) => {
         return {
           id: item.id,
-          index:
-            (this.queryCondition.pageNumber - 1) *
-              this.queryCondition.pageSize +
-            index +
-            1,
+          index: (this.queryCondition.pageNumber - 1) * this.queryCondition.pageSize + index + 1,
           name: item.name,
           mobilePhone: item.mobilePhone,
           gender: item.gender,
           roles: item.roles,
-          createDate: this.$dayjs(item.createDate).format(
-            'YYYY-MM-DD HH:mm:ss'
-          ),
+          createDate: this.$dayjs(item.createDate).format('YYYY-MM-DD HH:mm:ss'),
           consume: item.consume
         }
       })

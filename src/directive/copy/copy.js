@@ -1,20 +1,19 @@
 /* 复制一段内容到剪切板板 */
 
-import { Message } from 'element-ui';
-
+import { Message } from 'element-ui'
 
 const copyNode = (elem) => {
-  const selection = window.getSelection();
+  const selection = window.getSelection()
   // 如果剪切板中已经有复制了的内容，需要清掉。
   if (selection.rangeCount > 0) {
-    selection.removeAllRanges();
+    selection.removeAllRanges()
   }
-  const range = document.createRange();
-  range.selectNodeContents(elem);
-  selection.addRange(range);
-  const result = document.execCommand('Copy');
+  const range = document.createRange()
+  range.selectNodeContents(elem)
+  selection.addRange(range)
+  const result = document.execCommand('Copy')
   // 清除选中的内容,也可以使用 window.getSelection().removeAllRanges()
-  range.collapse(false);
+  range.collapse(false)
 
   if (result) {
     Message({
@@ -29,41 +28,39 @@ const copyNode = (elem) => {
   }
 }
 
-
 const copy = (content) => {
   if (!content) {
     Message({
       type: 'warning',
-      message: '没有要复制的内容',
+      message: '没有要复制的内容'
     })
-    return;
+    return
   }
 
   if (content.nodeType === 1) {
-    copyNode(content);
+    copyNode(content)
   } else if (typeof content === 'string') {
-    const wrap = document.createElement('div');
+    const wrap = document.createElement('div')
     wrap.insertAdjacentText('afterBegin', content)
-    document.body.appendChild(wrap);
-    copyNode(wrap);
-    document.body.removeChild(wrap);
+    document.body.appendChild(wrap)
+    copyNode(wrap)
+    document.body.removeChild(wrap)
   } else {
     Message({
       type: 'warning',
-      message: '没有可以复制的内容',
+      message: '没有可以复制的内容'
     })
   }
 }
 
-
 export default {
   inserted(el, binding) {
-    el._conetnt = binding.value;
+    el._conetnt = binding.value
     el.addEventListener('click', () => {
-      copy(el._conetnt);
-    });
+      copy(el._conetnt)
+    })
   },
   update(el, binding) {
-    el._conetnt = binding.value;
+    el._conetnt = binding.value
   }
 }

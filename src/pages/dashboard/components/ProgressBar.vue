@@ -20,23 +20,20 @@
       <el-progress :percentage="100" status="success"></el-progress>
     </div>
   </el-card>
-
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-
-      }
-    }
+export default {
+  data() {
+    return {}
   }
+}
 </script>
 
 <style lang="scss" scoped>
-  .dashboard-progress {
-    .dashboard-progress__header {
-      font-size: 16px;
-    }
+.dashboard-progress {
+  .dashboard-progress__header {
+    font-size: 16px;
   }
+}
 </style>

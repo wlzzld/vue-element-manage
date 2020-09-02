@@ -6,12 +6,7 @@
       </el-form-item>
 
       <el-form-item label="角色：">
-        <el-select
-          v-model="userInfo.roles"
-          multiple
-          disabled
-          placeholder="请选择用户角色"
-        >
+        <el-select v-model="userInfo.roles" multiple disabled placeholder="请选择用户角色">
           <el-option
             v-for="item in tableMng.getTable('role')"
             :key="item.id"
@@ -38,11 +33,7 @@
 
       <el-row>
         <el-col :span="12">
-          <el-form-item
-            label="手机:"
-            placeholder="请填写手机号"
-            prop="mobilePhone"
-          >
+          <el-form-item label="手机:" placeholder="请填写手机号" prop="mobilePhone">
             <el-input v-model="userInfo.mobilePhone" clearable></el-input>
           </el-form-item>
         </el-col>
@@ -54,12 +45,7 @@
       </el-row>
     </el-form>
 
-    <el-button
-      type="primary"
-      round
-      :loading="submitLoading"
-      @click="handleSubmit"
-    >
+    <el-button type="primary" round :loading="submitLoading" @click="handleSubmit">
       提交
     </el-button>
   </div>

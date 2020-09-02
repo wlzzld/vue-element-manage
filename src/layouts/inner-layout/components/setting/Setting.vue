@@ -5,15 +5,15 @@
     <el-drawer title="系统界面设置" :visible.sync="drawer" size="300px">
       <el-form label-width="100px">
         <el-form-item label="导航标签：">
-          <el-switch v-model="tagVisible" />
+          <el-switch v-model="tagVisible"></el-switch>
         </el-form-item>
 
         <el-form-item label="系统风格：">
-          <style-setting />
+          <style-setting></style-setting>
         </el-form-item>
 
         <el-form-item label="元素大小：">
-          <size-setting />
+          <size-setting></size-setting>
         </el-form-item>
       </el-form>
     </el-drawer>

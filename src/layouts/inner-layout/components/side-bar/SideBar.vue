@@ -12,7 +12,7 @@
         background-color="#545c64"
         text-color="#fff"
       >
-        <menu-item v-for="menu in menuList" :key="menu.path" :config="menu" />
+        <menu-item v-for="menu in menuList" :key="menu.path" :config="menu"></menu-item>
       </el-menu>
     </scrollbar>
   </div>
@@ -88,9 +88,7 @@ export default {
           title: route.meta.title,
           icon: route.meta.icon,
           path: route.path,
-          children: route.children.map((childrenRoute) =>
-            this.getMenuItem(childrenRoute)
-          )
+          children: route.children.map((childrenRoute) => this.getMenuItem(childrenRoute))
         }
       }
     },

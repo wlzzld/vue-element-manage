@@ -12,50 +12,56 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        newGoodsData: [{
-          name: "商品一",
-          address: "产地一产地一产地一产地一产地一",
-          price: "500"
-        }, {
-          name: "商品二",
-          address: "产地一",
-          price: "50000"
-        }, {
-          name: "商品三",
-          address: "产地一",
-          price: "500"
-        }, {
-          name: "商品四",
-          address: "产地一",
-          price: "500"
-        }, {
-          name: "商品五",
-          address: "产地一",
-          price: "500"
-        }, {
-          name: "商品六",
-          address: "产地一",
-          price: "500"
-        }, ]
-      }
+export default {
+  data() {
+    return {
+      newGoodsData: [
+        {
+          name: '商品一',
+          address: '产地一产地一产地一产地一产地一',
+          price: '500'
+        },
+        {
+          name: '商品二',
+          address: '产地一',
+          price: '50000'
+        },
+        {
+          name: '商品三',
+          address: '产地一',
+          price: '500'
+        },
+        {
+          name: '商品四',
+          address: '产地一',
+          price: '500'
+        },
+        {
+          name: '商品五',
+          address: '产地一',
+          price: '500'
+        },
+        {
+          name: '商品六',
+          address: '产地一',
+          price: '500'
+        }
+      ]
     }
   }
+}
 </script>
 <style lang="scss" scoped>
-  .goods-card {
-    .goods-card__header {
-      font-size: 16px;
-    }
+.goods-card {
+  .goods-card__header {
+    font-size: 16px;
   }
+}
 </style>
 <style lang="scss">
-  .goods-card {
-    .el-card__body {
-      padding-top: 0px;
-    }
-
+.goods-card {
+  .el-card__body {
+    padding-top: 0px;
   }
+}
 </style>

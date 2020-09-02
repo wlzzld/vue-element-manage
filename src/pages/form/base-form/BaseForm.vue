@@ -9,7 +9,11 @@
         </el-col>
         <el-col :xs="24" :md="12">
           <el-form-item label="数量" prop="amount">
-            <el-input v-model.number="formData.amount" placeholder="请输入数量" clearable></el-input>
+            <el-input
+              v-model.number="formData.amount"
+              placeholder="请输入数量"
+              clearable
+            ></el-input>
           </el-form-item>
         </el-col>
       </el-row>
@@ -18,13 +22,22 @@
         <el-col :xs="24" :md="12">
           <el-form-item label="区域" prop="region">
             <el-select v-model="formData.region" placeholder="请选择活动区域" clearable>
-              <el-option v-for="item in regionList" :key="item.id" :label="item.name" :value="item.id"></el-option>
+              <el-option
+                v-for="item in regionList"
+                :key="item.id"
+                :label="item.name"
+                :value="item.id"
+              ></el-option>
             </el-select>
           </el-form-item>
         </el-col>
         <el-col :xs="24" :md="12">
           <el-form-item label="开始时间" prop="startTime">
-            <el-date-picker v-model="formData.startTime" type="datetime" placeholder="请选择开始时间"></el-date-picker>
+            <el-date-picker
+              v-model="formData.startTime"
+              type="datetime"
+              placeholder="请选择开始时间"
+            ></el-date-picker>
           </el-form-item>
         </el-col>
       </el-row>
@@ -32,12 +45,20 @@
       <el-row :gutter="20">
         <el-col :xs="24" :md="12">
           <el-form-item label="手机" prop="mobilePhone">
-            <el-input v-model="formData.mobilePhone" placeholder="请输入主办方联系电话" clearable></el-input>
+            <el-input
+              v-model="formData.mobilePhone"
+              placeholder="请输入主办方联系电话"
+              clearable
+            ></el-input>
           </el-form-item>
         </el-col>
         <el-col :xs="24" :md="12">
           <el-form-item label="邮箱" prop="email">
-            <el-input v-model="formData.email" placeholder="请输入主办方联系邮箱" clearable></el-input>
+            <el-input
+              v-model="formData.email"
+              placeholder="请输入主办方联系邮箱"
+              clearable
+            ></el-input>
           </el-form-item>
         </el-col>
       </el-row>
@@ -63,7 +84,14 @@
       </el-form-item>
 
       <el-form-item label="描述" prop="description">
-        <el-input v-model="formData.description" type="textarea" :rows="3" :maxlength="100" show-word-limit placeholder="请输入描述"></el-input>
+        <el-input
+          v-model="formData.description"
+          type="textarea"
+          :rows="3"
+          :maxlength="100"
+          show-word-limit
+          placeholder="请输入描述"
+        ></el-input>
       </el-form-item>
     </el-form>
 
@@ -75,119 +103,134 @@
 </template>
 
 <script>
-  import tableMng from '@/utils/tableMng';
+import tableMng from '@/utils/tableMng'
 
-  export default {
-    name: 'BaseForm',
-    data() {
-      return {
-        formData: {
-          name: '',
-          amount: '',
-          region: '',
-          startTime: '',
-          mobilePhone: '',
-          email: '',
-          delivery: false,
-          type: [],
-          resource: '',
-          description: ''
-        },
-        formRules: {
-          name: [{
+export default {
+  name: 'BaseForm',
+  data() {
+    return {
+      formData: {
+        name: '',
+        amount: '',
+        region: '',
+        startTime: '',
+        mobilePhone: '',
+        email: '',
+        delivery: false,
+        type: [],
+        resource: '',
+        description: ''
+      },
+      formRules: {
+        name: [
+          {
             required: true,
             message: '请填写名称',
             trigger: 'blur'
-          }, {
+          },
+          {
             max: 20,
             message: '名称不能超过20个字',
             trigger: 'blur'
-          }],
-          amount: [{
+          }
+        ],
+        amount: [
+          {
             type: 'number',
             message: '数量必须为数值'
-          }],
-          region: [{
+          }
+        ],
+        region: [
+          {
             required: true,
             message: '请选择区域',
             trigger: 'change'
-          }],
-          startTime: [{
+          }
+        ],
+        startTime: [
+          {
             required: true,
             message: '请选择时间',
             trigger: 'change'
-          }],
-          mobilePhone: [{
+          }
+        ],
+        mobilePhone: [
+          {
             required: true,
             message: '请填写手机号',
             trigger: 'blur'
-          }, {
+          },
+          {
             pattern: /^1[345789]\d{9}$/,
             message: '手机号码格式不正确',
             trigger: 'blur'
-          }],
-          email: [{
+          }
+        ],
+        email: [
+          {
             required: true,
             message: '请填写邮箱',
             trigger: 'blur'
-          }, {
+          },
+          {
             type: 'email',
             message: '邮箱格式不正确',
             trigger: 'blur'
-          }],
-          type: [{
+          }
+        ],
+        type: [
+          {
             required: true,
             message: '请选择类型',
             trigger: 'change'
-          }]
-        },
-        regionList: [],
-        submitLoading: false,
-      }
-    },
-    created() {
-      this.regionList = tableMng.getTable('region');
-    },
-    methods: {
-      handleSubmit() {
-        this.submitLoading = true;
-        this.$refs.form.validate(valid => {
-          if (valid) {
-            console.log(this.formData);
-            this.$message.success('提交成功！');
-          } else {
-            this.$message.error('请按正确格式填写信息！');
           }
-        })
-        this.submitLoading = false;
+        ]
       },
-      handleCancel() {
-        this.$refs.form.resetFields();
-      }
+      regionList: [],
+      submitLoading: false
+    }
+  },
+  created() {
+    this.regionList = tableMng.getTable('region')
+  },
+  methods: {
+    handleSubmit() {
+      this.submitLoading = true
+      this.$refs.form.validate((valid) => {
+        if (valid) {
+          console.log(this.formData)
+          this.$message.success('提交成功！')
+        } else {
+          this.$message.error('请按正确格式填写信息！')
+        }
+      })
+      this.submitLoading = false
+    },
+    handleCancel() {
+      this.$refs.form.resetFields()
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>
-  .form-base {
-    width: 70%;
-    min-width: 500px;
-    padding: 1em;
-    margin: 0 auto;
-    border-radius: 10px;
-    background-color: #fff;
-
-  }
+.form-base {
+  width: 70%;
+  min-width: 500px;
+  padding: 1em;
+  margin: 0 auto;
+  border-radius: 10px;
+  background-color: #fff;
+}
 </style>
 
 <style lang="scss">
-  .form-base {
-    .inherit-line-height {
-
-      .el-form-item__label,
-      .el-form-item__content {
-        line-height: inherit;
-      }
+.form-base {
+  .inherit-line-height {
+    .el-form-item__label,
+    .el-form-item__content {
+      line-height: inherit;
     }
   }
+}
 </style>

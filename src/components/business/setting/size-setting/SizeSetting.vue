@@ -9,21 +9,21 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        size: this.$store.getters.size,
-        sizeSelectKey: 0
-      }
-    },
-    watch: {
-      size(value) {
-        this.$ELEMENT.size = value;
-        this.sizeSelectKey++;
-        this.$store.commit('SET_SIZE', value);
-        this.$store.commit('SET_CACHE_PAGES', []);
-        this.$router.replace('/reload');
-      }
+export default {
+  data() {
+    return {
+      size: this.$store.getters.size,
+      sizeSelectKey: 0
+    }
+  },
+  watch: {
+    size(value) {
+      this.$ELEMENT.size = value
+      this.sizeSelectKey++
+      this.$store.commit('SET_SIZE', value)
+      this.$store.commit('SET_CACHE_PAGES', [])
+      this.$router.replace('/reload')
     }
   }
+}
 </script>

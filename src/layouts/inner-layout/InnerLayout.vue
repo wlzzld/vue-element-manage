@@ -1,26 +1,26 @@
 <template>
   <div class="inner-layout">
     <!-- 侧边菜单 -->
-    <side-bar />
+    <side-bar></side-bar>
 
     <div class="inner-layout__main">
       <!-- 顶部工具栏 -->
-      <header-bar />
+      <header-bar></header-bar>
       <!--导航标签 -->
-      <nav-tag v-show="tagVisible" />
+      <nav-tag v-show="tagVisible"></nav-tag>
 
       <div class="inner-layout__page" :class="{ 'with-navtag': tagVisible }">
         <!-- 路由页面 -->
         <transition name="page" mode="out-in">
           <keep-alive :include="cachePages">
-            <router-view :key="key" />
+            <router-view :key="key"></router-view>
           </keep-alive>
         </transition>
       </div>
     </div>
 
     <!-- 系统界面设置 -->
-    <setting />
+    <setting></setting>
   </div>
 </template>
 

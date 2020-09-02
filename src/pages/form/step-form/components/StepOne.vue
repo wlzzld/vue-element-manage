@@ -5,8 +5,8 @@
     :rules="formRule"
     status-icon
     label-width="80px"
-    label-position="left">
-
+    label-position="left"
+  >
     <el-form-item label="字段1" prop="value1">
       <el-input v-model="formData.value1" clearable placeholder="请输入"></el-input>
     </el-form-item>
@@ -24,46 +24,52 @@
 </template>
 
 <script>
-  export default {
-    data() {
-      return {
-        formData: {
-          value1: '',
-          value2: '',
-          value3: ''
-        },
-        formRule: {
-          value1: [{
-            required: true,
-            message: '不能为空',
-            trigger: 'blur'
-          }],
-          value2: [{
-            required: true,
-            message: '不能为空',
-            trigger: 'blur'
-          }],
-          value3: [{
-            required: true,
-            message: '不能为空',
-            trigger: 'blur'
-          }]
-        },
-      }
-    },
-    methods: {
-      validForm() {
-        let result = true;
-        this.$refs.form.validate(valid => {
-          if (!valid) {
-            result = false;
-          }
-        })
-        return result;
+export default {
+  data() {
+    return {
+      formData: {
+        value1: '',
+        value2: '',
+        value3: ''
       },
-      handleNextStep() {
-        this.$emit('onNextStep', this.validForm())
+      formRule: {
+        value1: [
+          {
+            required: true,
+            message: '不能为空',
+            trigger: 'blur'
+          }
+        ],
+        value2: [
+          {
+            required: true,
+            message: '不能为空',
+            trigger: 'blur'
+          }
+        ],
+        value3: [
+          {
+            required: true,
+            message: '不能为空',
+            trigger: 'blur'
+          }
+        ]
       }
+    }
+  },
+  methods: {
+    validForm() {
+      let result = true
+      this.$refs.form.validate((valid) => {
+        if (!valid) {
+          result = false
+        }
+      })
+      return result
     },
+    handleNextStep() {
+      this.$emit('onNextStep', this.validForm())
+    }
   }
+}
 </script>

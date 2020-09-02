@@ -1,8 +1,8 @@
 <template>
   <div>
-    <router-view />
+    <router-view></router-view>
 
-    <theme-setting style="display: none" />
+    <theme-setting style="display: none"></theme-setting>
   </div>
 </template>
 

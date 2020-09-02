@@ -56,9 +56,7 @@ export default {
       }
     },
     ellipsisClass() {
-      return this.lineClamp > 0
-        ? 'text-overflow__multiple'
-        : 'text-overflow__single'
+      return this.lineClamp > 0 ? 'text-overflow__multiple' : 'text-overflow__single'
     },
     ellipsisStyle() {
       return {

@@ -22,19 +22,11 @@
         ></el-input>
       </el-form-item>
       <el-form-item label="姓名:" prop="name">
-        <el-input
-          v-model="userInfo.name"
-          placeholder="请填写用户姓名"
-          clearable
-        ></el-input>
+        <el-input v-model="userInfo.name" placeholder="请填写用户姓名" clearable></el-input>
       </el-form-item>
 
       <el-form-item label="角色:" prop="roles">
-        <el-select
-          v-model="userInfo.roles"
-          multiple
-          placeholder="请选择用户角色"
-        >
+        <el-select v-model="userInfo.roles" multiple placeholder="请选择用户角色">
           <el-option
             v-for="item in tableMng.getTable('role')"
             :key="item.id"
@@ -46,12 +38,9 @@
 
       <el-form-item label="性别:">
         <el-radio-group v-model="userInfo.gender">
-          <el-radio
-            v-for="item in tableMng.getTable('gender')"
-            :key="item.id"
-            :label="item.id"
-            >{{ item.name }}</el-radio
-          >
+          <el-radio v-for="item in tableMng.getTable('gender')" :key="item.id" :label="item.id">{{
+            item.name
+          }}</el-radio>
         </el-radio-group>
       </el-form-item>
 
@@ -65,11 +54,7 @@
 
       <el-row>
         <el-col :span="12">
-          <el-form-item
-            label="手机:"
-            placeholder="请填写手机号"
-            prop="mobilePhone"
-          >
+          <el-form-item label="手机:" placeholder="请填写手机号" prop="mobilePhone">
             <el-input v-model="userInfo.mobilePhone" clearable></el-input>
           </el-form-item>
         </el-col>
@@ -83,9 +68,7 @@
 
     <span slot="footer">
       <el-button @click="handleClose">取 消</el-button>
-      <el-button type="primary" :loading="submitLoading" @click="handleSubmit"
-        >提 交</el-button
-      >
+      <el-button type="primary" :loading="submitLoading" @click="handleSubmit">提 交</el-button>
     </span>
   </el-dialog>
 </template>
@@ -212,10 +195,7 @@ export default {
       })
     },
     handleBeforeClose() {
-      if (
-        window.JSON.stringify(this.userInfoBackup) ===
-        window.JSON.stringify(this.userInfo)
-      ) {
+      if (window.JSON.stringify(this.userInfoBackup) === window.JSON.stringify(this.userInfo)) {
         this.handleClose()
       } else {
         this.$confirm('信息修改后未提交，确认关闭？', '提示', {

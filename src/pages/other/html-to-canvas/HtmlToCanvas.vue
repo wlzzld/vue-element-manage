@@ -32,7 +32,7 @@
     methods: {
       setBase64() {
         // 首先将图片绘制到canvas上，然后将canvas转成base64，并设置为img标签的src。
-        let img = new Image(); //必须手动创建img标签。
+        const img = new Image(); //必须手动创建img标签。
         img.src = this.imgURL;
         img.setAttribute('crossOrigin', 'anonymous'); //必须设置，不然生成的图片的base64是空的。
         img.onload = () => {
