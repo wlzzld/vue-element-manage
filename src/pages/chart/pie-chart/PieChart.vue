@@ -90,7 +90,6 @@
       </el-col>
 
       <el-col :lg="12" :sm="24"> </el-col>
-      <Show />
     </el-row>
   </div>
 </template>
@@ -111,7 +110,6 @@ import ChartCircle3 from './components/ChartCircle3'
 import ChartCircle4 from './components/ChartCircle4'
 import ChartCircle5 from './components/ChartCircle5'
 import ChartCircle6 from './components/ChartCircle6'
-import Show from './components/Show'
 
 export default {
   name: 'PieChart',
@@ -130,8 +128,7 @@ export default {
     ChartCircle3,
     ChartCircle4,
     ChartCircle5,
-    ChartCircle6,
-    Show
+    ChartCircle6
   }
 }
 </script>

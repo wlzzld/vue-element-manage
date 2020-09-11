@@ -42,7 +42,7 @@
         <chart-overlay></chart-overlay>
       </el-col>
 
-      <el-col :lg="12" :sm="24"> <show /> </el-col>
+      <el-col :lg="12" :sm="24"> </el-col>
     </el-row>
   </div>
 </template>
@@ -55,7 +55,6 @@ import ChartGroup2 from './components/ChartGroup2'
 import ChartGuide from './components/ChartGuide'
 import ChartWaterfall from './components/ChartWaterfall'
 import ChartOverlay from './components/ChartOverlay'
-import Show from './components/Show'
 
 export default {
   name: 'PillarChart',
@@ -66,8 +65,7 @@ export default {
     ChartGroup2,
     ChartGuide,
     ChartWaterfall,
-    ChartOverlay,
-    Show
+    ChartOverlay
   }
 }
 </script>
